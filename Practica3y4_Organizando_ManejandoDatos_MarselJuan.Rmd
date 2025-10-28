@@ -424,6 +424,9 @@ billboard_tidy_indice<-billboar.t.pl%>%distinct()%>%mutate(id=row_number())%>%se
 canciones<- billboard_tidy_indice%>%select(id,artist,track,time)
 ranking<-billboard_tidy_indice%>%select(id,rank,week)
 
+billboard_tidy_indice<-billboar.t.pl%>%unique()%>%mutate(id=row_number())%>%select(id, everything())
+canciones<- billboard_tidy_indice%>%select(id,artist,track,time)
+ranking<-billboard_tidy_indice%>%select(id,rank,week)
 ```
 
 ## TidyR. Una única unidad de observación almacenada en varias tablas
@@ -443,8 +446,12 @@ Esto se puede hacer fácilmente con las librerías `plyr` y `dplyr`.
 En la librería _tidyr_ hay varios conjuntos de datos. **table1** es un conjunto _tidy_ pero **table5** no lo es. Realiza las operaciones necesarias para obtener **table1** a partir de **table5**. También deben coincidir los tipos de datos de las columnas. 
 
 ```{r}
+library(tidyr)
 
-
+conversion<-table5%>%mutate(year=paste0(century,year))%>%
+  select(-century)%>%
+  separate(col = rate,into =c("case","population"), sep="/" )
+conversion
 ```
 
 ## DPLYR
