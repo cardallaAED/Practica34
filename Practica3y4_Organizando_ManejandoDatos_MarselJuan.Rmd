@@ -207,7 +207,7 @@ Para convertir este conjunto a formato _tidy_ tendremos que agrupar todas las co
 Convierte el dataset `pew_religion` a formato _tidy_ usando `gather`. La columna `income` debe contener una variable de tipo `factor`.
 
 ```{r}
-
+pew_religion.t<-pew_religion%>%gather(key = "income", value = "freq",-religion)
 
 ```
 
@@ -216,6 +216,8 @@ Otro ejemplo usando el conjunto de datos `Billboard` que muestra cuando una canc
 ```{r load billboard}
 load('data/billboard.Rdata')
 head(raw[, 1:12])
+billboard.t<-raw%>%gather(key = "week",value = "rank",starts_with("wk"))
+
 ```
 
 La posición (_ranking_) de cada canción en cada semana después de haber entrado en el Top 100 se almacena en las columnas `wk1` a `wk76` (ver `str(raw)`). Si un tema sale del Top 100 antes de 76 semanas se rellenan los datos con NA's.
