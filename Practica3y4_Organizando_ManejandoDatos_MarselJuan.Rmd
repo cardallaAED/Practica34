@@ -399,6 +399,7 @@ agregado<- flights%>% group_by(tailnum)%>%
                               Mean_distance=mean(distance),
                               Total_distance=sum(distance))
 agregado
+
 ```
 
 
