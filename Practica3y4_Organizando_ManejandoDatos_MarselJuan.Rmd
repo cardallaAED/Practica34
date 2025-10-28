@@ -372,6 +372,10 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 * En el data frame  `planes` quédate con todas las variables excepto `speed` y `type`.
 
 ```{r }
+flights_e<-flights%>%select(-time_hour)%>%
+                    select(!ends_with("time"))
+                
+planes_e<-planes%>%select(-speed,-type)                 
 
 ```
 
@@ -380,8 +384,9 @@ Existen variables que, a priori, no tienen demasiado interés para el estudio qu
 Incorpora una nueva variable a `flights` denominado `Full_Date` que sea de tipo `character` que incorpore una cadena de texto de la forma `d-m-Y`. Donde `d` indica día, `m` mes e `Y` año, a partir de la información incluida en el data frame. Utiliza una función de **DPLYR** que permita conseguir este propósito. Elimina las variables originales involucradas en la creación de la nueva variable.
 
 ```{r }
-
-
+flights_date<-flights%>%mutate(FullDate = as.character(paste(day,month,year,sep = "-")))%>%
+          select(-year,-month,-day)
+flights_date
 ```
 
 ### Ejercicio 11
