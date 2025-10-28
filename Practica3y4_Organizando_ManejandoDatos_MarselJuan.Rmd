@@ -231,7 +231,8 @@ Obtén la versión _tidy_ de este conjunto de datos usando `pivot_longer`.
 Consejo: puedes eliminar el prefijo `wk` de las semanas mediante el argumento `names_prefix`. Opcionalmente puedes crear una columna `date` a partir de `date.entered`, sumando las semanas transcurridas desde la fecha de entrada en lista.
 
 ```{r}
-
+billboar.t.pl<-raw%>%pivot_longer(names_to ="week",values_to = "rank",starts_with("wk"),names_prefix ="wk", values_drop_na = TRUE )%>%
+              mutate(week=as.numeric(week),date=as.Date(date.entered)+(week - 1) * 7)%>%arrange(rank)
 
 ```
 
