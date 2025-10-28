@@ -462,7 +462,9 @@ conversion
 Consigue un data frame denominado `Distance_Manufacturer_model` que contenga 4 columnas (`tailnum`,`Total_distance`, `manufacturer` y `model`) ordenado de mayor a menor en base a la variable `Total_distance`. Para ello une los data frames `Distances_plane` (calculado en el ejercicio anterior y que contiene las distancias totales) y `planes` (que contiene los datos de cada modelo de avión). La variable que te permitirá unir ambos data frames es `tailnum`. A continuación deberás ordenar, en orden descendente de la variable `Total_distance` el data frame resultante. Finalmente selecciona las variables que tiene que contener la tabla final (`Total_distance`, `manufacturer` y `model`). Utiliza el operador pipe para enlazar las funciones.
 
 ```{r }
-
+Distance_Manufacturer_model<-inner_join(Distances_plane,planes,by="tailnum")%>%
+                            arrange(desc(Total_distance))%>%
+                            select(Total_distance,manufacturer,model)
 ```
 
 ### Ejercicio Extra 4
