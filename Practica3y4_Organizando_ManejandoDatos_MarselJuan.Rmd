@@ -360,6 +360,7 @@ Reasigna los nombres de los data frames `planes.f` y `flights.f` a los nombres o
 ```{r }
 planes.f<-planes
 flights.f<-flights
+
 ```
 
 
