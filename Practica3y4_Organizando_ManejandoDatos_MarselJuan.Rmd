@@ -464,7 +464,7 @@ Consigue un data frame denominado `Distance_Manufacturer_model` que contenga 4 c
 ```{r }
 Distance_Manufacturer_model<-inner_join(Distances_plane,planes,by="tailnum")%>%
                             arrange(desc(Total_distance))%>%
-                            select(Total_distance,manufacturer,model)
+                            select(Total_distance,manufacturer,model) 
 ```
 
 ### Ejercicio Extra 4
