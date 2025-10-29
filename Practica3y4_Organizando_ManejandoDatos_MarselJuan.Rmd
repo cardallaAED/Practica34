@@ -472,7 +472,13 @@ Distance_Manufacturer_model<-inner_join(Distances_plane,planes,by="tailnum")%>%
 Queremos averiguar si existe algún tipo de relación entre el retraso de los vuelos (llegada y salida) y el fabricante. Para ello queremos calcular el retraso medio en la llegada y en la salida de los vuelos (cuando se disponga de esos datos) para cada uno de los fabricantes (`manufacturer`). Propón la estrategia (y el código) a emplear para conseguir proporcionar un data frame ordenado del retraso en la llegada y la salida para cada uno de los fabricantes. ¿Cuáles son los dos fabricantes de aviones que más se retrasan en las salidas? ¿Y en las llegadas?
 
 ```{r }
-
+retrasos<- inner_join(flights,planes%>%select(tailnum,manufacturer),by="tailnum")%>%group_by(manufacturer)%>%summarise(retrasos_llegada=mean(arr_delay,na.rm=TRUE),
+                                                                                                                       retrasos_salidas=mean(dep_delay,na.rm=TRUE))%>%arrange(desc(retrasos_salidas))
+#¿Cuáles son los dos fabricantes de aviones que más se retrasan en las salidas?
+#
+tail(retrasos,2)
+#¿Y en las llegadas?
+tail(retrasos%>%arrange(desc(retrasos_llegada)),2)
 ```
 
 
